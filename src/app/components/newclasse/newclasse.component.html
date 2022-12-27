@@ -1,0 +1,26 @@
+<div class="container">
+  <form [formGroup]="classeFormGroup" *ngIf="classeFormGroup">
+    <table class="table">
+      <thead>
+      <th>Id commande</th>
+      <th>Sigle</th>
+      <th>Annee</th>
+      <th>Specialite</th>
+      <th>Nombre d'élèves</th>
+      </thead>
+      <tbody>
+      <td *ngIf="cl ;else vide">{{cl.id_CLASSE}} </td>
+      <ng-template #vide></ng-template>
+      <td></td>
+      <td> <input type ="text" class="form-control" formControlName="sigle"></td>
+      <td> <input type ="number" class="form-control" formControlName="annee"></td>
+      <td> <input type="text" formControlName="specialite" class="form-control"></td>
+      <td> <input type ="number" class="form-control" formControlName="nbreeleves"></td>
+      </tbody>
+    </table>
+    <button (click)="onSaveClasse()" class="btn btn-success">
+      Save
+    </button>
+  </form>
+</div>
+<br>

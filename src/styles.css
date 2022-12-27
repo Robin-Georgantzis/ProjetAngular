@@ -1,1 +1,72 @@
-/* You can add global styles to this file, and also import other style files */
+@import "~font-awesome/css/font-awesome.min.css";
+@import "~bootstrap/dist/css/bootstrap.css";
+body
+{
+  background-color: white;
+  margin-left:200px;
+  margin-right: 200px;
+}
+
+
+h1
+{
+  display: block;
+  font-size: 2em;
+  margin-top: 20px;
+  font-weight: bold;
+  text-align: center;
+}
+
+hr
+{
+  border: solid dodgerblue;
+}
+
+p
+{
+  text-align: center;
+}
+
+
+
+
+.fab{
+  font-size: 35px;
+  margin: 5px;
+  color:white;
+}
+
+.fa-youtube:hover{
+  color:red;
+}
+
+.fa-facebook-f:hover{
+  color: midnightblue;
+}
+
+.fa-discord:hover{
+  color:lawngreen;
+}
+
+html, body {
+  margin:0;
+  padding:0;
+  height:100%;
+}
+#main {
+  min-height:100%;
+  position:relative;
+  padding-bottom:100px;   /* Hauteur du pied de page */
+}
+#footer {
+  background-color: dodgerblue;
+  height: 25%;
+  text-align: center;
+  width: 100%;
+  position:relative;
+  padding:15px;
+}
+
+
+
+

@@ -1,0 +1,66 @@
+<div class="container" *ngIf="deleted == false">
+  <form [formGroup]="classeFormGroup" *ngIf="classeFormGroup">
+    <div class = "form-group">
+      <label>ID DE LA CLASSE</label>
+      <input type ="text" class="form-control" formControlName="id_CLASSE" readonly>
+    </div>
+    <div class = "form-group">
+      <label>SIGLE</label>
+      <input type ="text" class="form-control"
+             formControlName="sigle"
+             [ngClass]="{'is-invalid': submitted && classeFormGroup.controls.sigle.errors}">
+      <div *ngIf="submitted && classeFormGroup.controls.sigle.errors" class ="invalid-feedback">
+        <div *ngIf="classeFormGroup.controls.sigle.errors.required">
+          Sigle obligatoire
+        </div>
+      </div>
+    </div>
+    <div class = "form-group">
+    <label>ANNEE</label>
+    <input type ="number" class="form-control" formControlName="annee"
+           [ngClass]="{'is-invalid': submitted && classeFormGroup.controls.annee.errors}">
+    <div *ngIf="submitted && classeFormGroup.controls.annee.errors" class ="invalid-feedback">
+      <div *ngIf="classeFormGroup.controls.annee.errors.required">
+        Date de commande obligatoire
+      </div>
+    </div>
+  </div>
+    <div class = "form-group">
+      <label>SPECIALITE</label>
+      <input type="text" formControlName="specialite" class="form-control" [ngClass]="{'is-invalid': submitted && classeFormGroup.controls.specialite.errors}">
+        <div *ngIf="submitted && classeFormGroup.controls.specialite.errors"
+             class ="invalid-feedback">
+          <div *ngIf="classeFormGroup.controls.specialite.errors.required">
+            Spécialité obligatoire
+          </div>
+        </div>
+    </div>
+
+    <div class = "form-group">
+      <label>NOMBRE D'ELEVES</label>
+      <input type ="number" class="form-control"
+             formControlName="nbreeleves"
+             [ngClass]="{'is-invalid': submitted && classeFormGroup.controls.nbreeleves.errors}">
+      <div *ngIf="submitted && classeFormGroup.controls.nbreeleves.errors" class ="invalid-feedback">
+        <div *ngIf="classeFormGroup.controls.nbreeleves.errors.required">
+          Nombre d'élèves obligatoire
+        </div>
+      </div>
+    </div>
+
+    <nav class="navbar navbar-expand-sm bg-light navbar-light">
+      <ul class="navbar navbar-nav">
+        <li class="nav-item">
+          <button (click)="onUpdateComfact()" class="btn btn-success">
+            Save
+          </button>
+        </li>
+        <li class="nav-item">
+          <button (click)="onDeleteComfact()" class="btn btn-success">
+            Delete
+          </button>
+        </li>
+      </ul>
+    </nav>
+  </form>
+</div>

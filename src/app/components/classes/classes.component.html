@@ -1,0 +1,11 @@
+<br>
+<div class="container">
+  <h1>---- Gestion des classes ----</h1>
+<form (ngSubmit)="onSearch()">
+  numéro de la classe : <input type="text" [(ngModel)]="numclasse" name="numclasse">
+</form>
+<div *ngIf="classe">
+  <app-editclasse [classefact]="classe"></app-editclasse><!-- affiche le formulaire du fichier editcommande -->
+</div>
+<br>
+</div>

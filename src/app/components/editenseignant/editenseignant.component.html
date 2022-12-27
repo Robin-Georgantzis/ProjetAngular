@@ -1,0 +1,111 @@
+<div class="container">
+  <h1>---- Modification de l'enseignant selectionné ----</h1>
+  <form [formGroup]="enseignantFormGroup" *ngIf="enseignantFormGroup">
+    <div class="form-group">
+      <label>ID enseignant</label>
+      <input type="text" formControlName="id_ENSEIGNANT" class="form-control">
+    </div>
+    <div class="form-group">
+      <label>Prénom</label>
+      <input type="text" formControlName="prenom" class="form-control"
+             [ngClass]="{'is-invalid':submitted && enseignantFormGroup.controls.prenom.errors, 'is-valid':submitted && !enseignantFormGroup.controls.prenom.errors }">
+      <div class="invalid-feedback" *ngIf="submitted && enseignantFormGroup.controls.prenom.errors">
+        <div *ngIf="enseignantFormGroup.controls.prenom.errors.required">
+          Prénom obligatoire
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label>Téléphone</label>
+      <input type="text" formControlName="tel" class="form-control"
+             [ngClass]="{'is-invalid':submitted && enseignantFormGroup.controls.tel.errors, 'is-valid':submitted && !enseignantFormGroup.controls.tel.errors}">
+      <div class="invalid-feedback" *ngIf="submitted && enseignantFormGroup.controls.tel.errors">
+        <div *ngIf="enseignantFormGroup.controls.tel.errors.required">
+          Tel obligatoire
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label>Matricule</label>
+      <input type="text" formControlName="matricule" class="form-control"
+             [ngClass]="{'is-invalid':submitted && enseignantFormGroup.controls.matricule.errors, 'is-valid':submitted && !enseignantFormGroup.controls.matricule.errors}">
+      <div class="invalid-feedback" *ngIf="submitted && enseignantFormGroup.controls.matricule.errors">
+        <div *ngIf="enseignantFormGroup.controls.matricule.errors.required">
+          Matricule obligatoire
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label>Charge par semaine : </label>
+      <input type="number" formControlName="chargesem" class="form-control"
+             [ngClass]="{'is-invalid':submitted && enseignantFormGroup.controls.chargesem.errors, 'is-valid':submitted && !enseignantFormGroup.controls.chargesem.errors }">
+      <div class="invalid-feedback" *ngIf="submitted && enseignantFormGroup.controls.chargesem.errors">
+        <div *ngIf="enseignantFormGroup.controls.chargesem.errors.required">
+          Charge par semaine obligatoire
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label>Salaire mensuel</label>
+      <input type="number" formControlName="salairemensu" class="form-control"
+             [ngClass]="{'is-invalid':submitted && enseignantFormGroup.controls.salairemensu.errors, 'is-valid':submitted && !enseignantFormGroup.controls.salairemensu.errors }">
+      <div class="invalid-feedback" *ngIf="submitted && enseignantFormGroup.controls.salairemensu.errors">
+        <div *ngIf="enseignantFormGroup.controls.salairemensu.errors.required">
+          Salaire mensuel obligatoire
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label>Date d'engagement : </label>
+      <input type="date" formControlName="dateengag" class="form-control"
+             [ngClass]="{'is-invalid':submitted && enseignantFormGroup.controls.dateengag.errors, 'is-valid':submitted && !enseignantFormGroup.controls.dateengag.errors }">
+      <div class="invalid-feedback" *ngIf="submitted && enseignantFormGroup.controls.dateengag.errors">
+        <div *ngIf="enseignantFormGroup.controls.dateengag.errors.required">
+          Date d'engagement obligatoire
+        </div>
+      </div>
+    </div>
+
+      <button (click)="onUpdateEnseignant()" class="btn btn-success">Update</button>
+
+      <button (click)="onShowClasseEnseignant()" class="btn btn-success">Classes</button>
+
+
+  </form>
+</div>
+
+
+<br>
+<div class="container">
+  <h2></h2>
+<ng-container *ngIf="classefact" >
+  <ng-container *ngIf="classefact.length>0 else vide">
+    <table  class="table">
+      <thead>
+      <th>ID de la classe</th>
+      <th>Sigle</th>
+      <th>Année</th>
+      <th>Spécialité</th>
+      <th>Nombre d'élèves</th>
+      </thead>
+      <tbody>
+      <tr *ngFor="let cl of classefact">
+        <td>{{cl.id_CLASSE}}</td>
+        <td>{{cl.sigle}}</td>
+        <td>{{cl.annee}}</td>
+        <td>{{cl.specialite}}</td>
+        <td>{{cl.nbreeleves}}</td>
+      </tr>
+      </tbody>
+    </table>
+  </ng-container>
+  <ng-template #vide>
+    Aucune classe pour cet enseignant
+  </ng-template>
+</ng-container>
+</div>
+<br>
+<div class="container">
+  <app-newclasse [clfact]="enseignantFormGroup" (newClasse)="addClasse($event)">
+  </app-newclasse>
+</div>

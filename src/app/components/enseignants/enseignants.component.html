@@ -1,0 +1,111 @@
+<!--
+<p>---- Affichage simple du client avec son id ----</p>
+<div *ngIf="enseignant">
+  <p>Le nom de l'enseignant est : {{enseignant.nom}}</p>
+</div>
+
+<div>
+  numero de l'enseignant :  <input type = "text" [(ngModel)]="numrech"><br>
+  <button (click)="recherche()">recherche</button>
+</div>
+<p>---- Affichage avec ngIf ----</p>
+<div *ngIf="enseignant">{{enseignant.nom}}</div>
+
+<form #f="ngForm" (ngSubmit)="rechParForm(f.value)">
+  numero : <input type="text" ngModel name="numero">
+  <button (click)="recherche()">recherche</button>
+</form>
+
+
+<p>---- Affichage avec template ----</p>
+<ng-template [ngIf]="enseignant" [ngIfElse]="inconnu">
+  {{enseignant.nom}}
+</ng-template>
+<ng-template #inconnu>
+  <div>Inconnu</div>
+</ng-template>
+
+
+<form #f2="ngForm" (ngSubmit)="rechParFormNom(f2.value)">
+  Nom recherché : <input type="text" ngModel name="nom">
+</form>
+
+<ng-template [ngIf]="enseignanttrouv">
+  <ng-template [ngIf]="enseignanttrouv.length>0" [ngIfElse]="inconnu">
+    <ul>
+      <li *ngFor="let cl of enseignanttrouv">
+        {{cl.nom}}-{{cl.prenom}}-{{cl.tel}}-{{cl.id_ENSEIGNANT}}
+        <button (click)="suppEnseignant(cl)">effacer</button>
+      </li>
+    </ul>
+  </ng-template>
+  <ng-template #inconnu>
+    nom inconnu
+  </ng-template>
+
+</ng-template>
+-->
+<div class="container">
+  <h1>---- Bienvenue sur la gestion des enseignants ----</h1>
+<nav class="navbar navbar-expand-sm bg-light navbar-light">
+  <ul class="navbar navbar-nav">
+    <li>
+      <form #f="ngForm" (ngSubmit)="rechParFormNom(f.value)" class="form-inline">
+        Nom de l'enseignant :
+        <input ngModel name="nom" type="text" >
+        <button class="btn btn-sm btn-outline-info m-lg-2">
+<span class = "fa fa-search">
+</span>
+        </button>
+      </form>
+    </li>
+    <li>
+      <button (click)="onNewClient()" class="btn btn-sm btn-outline-infoms-2">Nouveau enseignant</button>
+    </li>
+  </ul>
+</nav>
+<ng-container *ngIf="enseignanttrouv">
+  <ng-container *ngIf="enseignanttrouv.length>0 else inconnu">
+    <table class="table">
+      <thead>
+      <th>Id_enseignant</th>
+      <th>Nom</th>
+      <th>Prenom</th>
+      <th>Tel</th>
+      <th>Matricule</th>
+      <th>Charge par semaine</th>
+      <th>Salaire Mensuel</th>
+      <th>Date Engagement</th>
+      <th>Del</th>
+      <th>Edit</th>
+      </thead>
+      <tbody>
+      <tr *ngFor="let c of enseignanttrouv">
+        <td>{{c.id_ENSEIGNANT}}</td>
+        <td>{{c.nom}}</td>
+        <td>{{c.prenom}}</td>
+        <td>{{c.tel}}</td>
+        <td>{{c.matricule}}</td>
+        <td>{{c.chargesem}}</td>
+        <td>{{c.salairemensu}}</td>
+        <td>{{c.dateengag}}</td>
+        <td>
+          <button (click)=suppEnseignant(c) class="btn btn-danger">
+            <span class = "fa fa-trash-o"></span>
+          </button>
+        </td>
+        <td>
+          <button (click)=onEdit(c) class="btn btn-danger">
+            <span class = "fa fa-edit"></span>
+          </button>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </ng-container>
+  <ng-template #inconnu>
+    Nom inconnu
+  </ng-template>
+</ng-container>
+
+</div>
