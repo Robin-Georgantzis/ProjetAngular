@@ -1,6 +1,7 @@
 <br>
 <div class="container">
   <h1>---- Gestion des classes ----</h1>
+  <h3>Recherche sur l'id d'une classe</h3>
 <form (ngSubmit)="onSearch()">
   numéro de la classe : <input type="text" [(ngModel)]="numclasse" name="numclasse">
 </form>
@@ -9,3 +10,36 @@
 </div>
 <br>
 </div>
+<div class="container">
+  <h3>Recherche sur le nombre d'étudiant</h3>
+  <form #f=ngForm (ngSubmit)="rechParFormNbreEleves()">
+    Nombre d'élèves: <input type="text" [(ngModel)]="numero" name="numero">
+  </form>
+  <ng-container *ngIf="classetrouv">
+    <ng-container *ngIf="classetrouv.length>0 else inconnu">
+      <table class="table">
+        <thead>
+        <th>Id_Classe</th>
+        <th>Sigle</th>
+        <th>Année</th>
+        <th>Spécialité</th>
+        <th>Nombre d'élèves</th>
+        </thead>
+        <tbody>
+        <tr *ngFor="let c of classetrouv">
+          <td>{{c.id_CLASSE}}</td>
+          <td>{{c.sigle}}</td>
+          <td>{{c.annee}}</td>
+          <td>{{c.specialite}}</td>
+          <td>{{c.nbreeleves}}</td>
+        </tr>
+        </tbody>
+      </table>
+    </ng-container>
+    <ng-template #inconnu>
+      Nom inconnu
+    </ng-template>
+  </ng-container>
+
+</div>
+<br>

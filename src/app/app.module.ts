@@ -14,6 +14,7 @@ import { NewenseignantComponent } from './components/newenseignant/newenseignant
 import { EditenseignantComponent } from './components/editenseignant/editenseignant.component';
 import { EditclasseComponent } from './components/editclasse/editclasse.component';
 import { NewclasseComponent } from './components/newclasse/newclasse.component';
+import { ExamenComponent } from './components/examen/examen.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { NewclasseComponent } from './components/newclasse/newclasse.component';
     EditenseignantComponent,
     EditclasseComponent,
     NewclasseComponent,
+    ExamenComponent,
 
   ],
     imports: [

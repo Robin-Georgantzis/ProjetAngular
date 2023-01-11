@@ -2,12 +2,11 @@
   <form [formGroup]="classeFormGroup" *ngIf="classeFormGroup">
     <div class = "form-group">
       <label>ID DE LA CLASSE</label>
-      <input type ="text" class="form-control" formControlName="id_CLASSE" readonly>
+      <input type ="text" class="form-control" formControlName="id_CLASSE">
     </div>
     <div class = "form-group">
       <label>SIGLE</label>
-      <input type ="text" class="form-control"
-             formControlName="sigle"
+      <input type ="text" class="form-control" formControlName="sigle"
              [ngClass]="{'is-invalid': submitted && classeFormGroup.controls.sigle.errors}">
       <div *ngIf="submitted && classeFormGroup.controls.sigle.errors" class ="invalid-feedback">
         <div *ngIf="classeFormGroup.controls.sigle.errors.required">
@@ -38,8 +37,7 @@
 
     <div class = "form-group">
       <label>NOMBRE D'ELEVES</label>
-      <input type ="number" class="form-control"
-             formControlName="nbreeleves"
+      <input type ="number" class="form-control" formControlName="nbreeleves"
              [ngClass]="{'is-invalid': submitted && classeFormGroup.controls.nbreeleves.errors}">
       <div *ngIf="submitted && classeFormGroup.controls.nbreeleves.errors" class ="invalid-feedback">
         <div *ngIf="classeFormGroup.controls.nbreeleves.errors.required">
@@ -48,6 +46,43 @@
       </div>
     </div>
 
+
+    <ng-container *ngIf="listenseignant">
+      <ng-container *ngIf="listenseignant.length>0 else inconnu">
+        <table class="table">
+          <thead>
+          <th>Id_enseignant</th>
+          <th>Nom</th>
+          <th>Prenom</th>
+          <th>Tel</th>
+          <th>Matricule</th>
+          <th>Charge par semaine</th>
+          <th>Salaire Mensuel</th>
+          <th>Date Engagement</th>
+          <th>Del</th>
+          <th>Edit</th>
+          </thead>
+          <tbody>
+          <tr *ngFor="let c of listenseignant">
+            <td>{{c.id_ENSEIGNANT}}</td>
+            <td>{{c.nom}}</td>
+            <td>{{c.prenom}}</td>
+            <td>{{c.tel}}</td>
+            <td>{{c.matricule}}</td>
+            <td>{{c.chargesem}}</td>
+            <td>{{c.salairemensu}}</td>
+            <td>{{c.dateengag}}</td>
+          </tr>
+          </tbody>
+        </table>
+      </ng-container>
+      <ng-template #inconnu>
+        Aucun enseignant
+      </ng-template>
+    </ng-container>
+
+
+          <!-- Update et delete de classe  ne pas supprimer !-->
     <nav class="navbar navbar-expand-sm bg-light navbar-light">
       <ul class="navbar navbar-nav">
         <li class="nav-item">

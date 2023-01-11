@@ -1,0 +1,47 @@
+<div class="container">
+  <h1>---- Bienvenue sur la gestion des classes ----</h1>
+  <nav class="navbar navbar-expand-sm bg-light navbar-light">
+    <ul class="navbar navbar-nav">
+      <li>
+        <form #f="ngForm" (ngSubmit)="rechParFormSpecialite(f.value)" class="form-inline">
+          Spécialité du cour :
+          <input ngModel name="specialite" type="text" >
+          <button class="btn btn-sm btn-outline-info m-lg-2">
+<span class = "fa fa-search">
+</span>
+          </button>
+        </form>
+      </li>
+    </ul>
+  </nav>
+  <ng-container *ngIf="classetrouv">
+  <ng-container *ngIf="classetrouv.length>0 else inconnu">
+      <table class="table">
+        <thead>
+        <th>Id enseignant</th>
+        <th>nom</th>
+        <th>prénom</th>
+        <th>téléphone</th>
+        <th>Salaire</th>
+        <th>Date d'engagement</th>
+        <th>Spécialité du cour</th>
+        </thead>
+        <tbody>
+        <tr *ngFor="let c of classetrouv">
+          <td>{{c.enseignant.id_ENSEIGNANT}}</td>
+          <td>{{c.enseignant.nom}}</td>
+          <td>{{c.enseignant.prenom}}</td>
+          <td>{{c.enseignant.tel}}</td>
+          <td>{{c.enseignant.salairemensu}}</td>
+          <td>{{c.enseignant.dateengag}}</td>
+          <td>{{c.specialite}}</td>
+        </tr>
+        </tbody>
+        <br>
+      </table>
+    </ng-container>
+    <ng-template #inconnu>
+      Aucun cours trouvé
+    </ng-template>
+  </ng-container>
+</div>

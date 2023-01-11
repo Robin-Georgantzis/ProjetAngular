@@ -3,6 +3,7 @@ import {HttpClient} from "@angular/common/http";
 import {Injectable} from "@angular/core";
 import {Observable} from "rxjs";
 import {Enseignant} from "../entities/enseignant.entities"; // environment.prod si on veut passer en mode prod
+import {Classe} from "../entities/classe.entities";
 
 @Injectable({providedIn:"root"})
 export class EnseignantsService{
@@ -15,6 +16,10 @@ export class EnseignantsService{
   }
   getEnseignantNom(nom:string):Observable<Enseignant[]> {
     return this.httpClient.get<Enseignant[]>(this.host+"/enseignants/nom="+nom);
+  }
+
+  getEnseignantClasse(id_ENSEIGNANT: number) : Observable<Enseignant[]>{
+    return this.httpClient.get<Enseignant[]>(this.host + '/enseignants/id_ENSEIGNANT=' + id_ENSEIGNANT);
   }
 
   deleteEnseignant(e:Enseignant):Observable<void>{

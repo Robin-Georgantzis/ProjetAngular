@@ -30,11 +30,17 @@ export class ComfactsService {
 
   updateComfact(c: Classe): Observable<Classe>{
     return this.httpClient.put<Classe>(this.host + '/classe/' + c.id_CLASSE, c);
-
   }
-
 
   getClasseEnseignant(id_ENSEIGNANT: number) : Observable<Classe[]>{
     return this.httpClient.get<Classe[]>(this.host + '/classe/id_ENSEIGNANT=' + id_ENSEIGNANT);
+  }
+
+  getClasseSpecialite(specialite:string):Observable<Classe[]> {
+    return this.httpClient.get<Classe[]>(this.host+"/classe/specialite="+specialite);
+  }
+
+  searchByNbreEleves(nbreeleves:number) : Observable<Classe[]>{
+    return this.httpClient.get<Classe[]>(this.host+"/classe/nbreeleves="+nbreeleves);
   }
 }

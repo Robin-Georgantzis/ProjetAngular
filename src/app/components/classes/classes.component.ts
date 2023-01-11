@@ -10,7 +10,9 @@ import {ComfactsService} from "../../services/classeserv.service";
 export class ClassesComponent implements OnInit {
   classe:Classe|null=null;
   numclasse:number=0;
+  numero:number=0;
   nom:string="";
+  classetrouv?:Classe[];
 
   constructor(private classeService:ComfactsService) { }
 
@@ -25,4 +27,11 @@ export class ClassesComponent implements OnInit {
       error:error=>alert("Erreur : "+error.headers.get("error"))
     })
   }
+
+  rechParFormNbreEleves() {
+    this.classeService.searchByNbreEleves(this.numero).subscribe({
+      next:data=>{this.classetrouv=data},
+    })
+  }
+
 }

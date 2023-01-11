@@ -2,6 +2,9 @@ import {Component, Input, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {ComfactsService} from "../../services/classeserv.service";
 import {Classe} from "../../entities/classe.entities";
+import {Enseignant} from "../../entities/enseignant.entities";
+import {ActivatedRoute} from "@angular/router";
+import {EnseignantsService} from "../../services/enseignants.service";
 
 @Component({
   selector: 'app-editclasse',
@@ -14,8 +17,12 @@ export class EditclasseComponent implements OnInit {
   submitted=false;
   @Input() classefact?:Classe;
   deleted=false;
+  listenseignant?:Enseignant[];
+  id_ENSEIGNANT:number;
+  classetrouv?:Classe[];
 
-  constructor(private classeService: ComfactsService, private fb: FormBuilder) {
+  constructor(private enseignantService:EnseignantsService,private fb:FormBuilder,activatedRoute : ActivatedRoute,private classeService:ComfactsService) {
+    this.id_ENSEIGNANT=activatedRoute.snapshot.params.idClasse;
   }
 
   ngOnInit(): void {
@@ -54,5 +61,6 @@ export class EditclasseComponent implements OnInit {
         });
     }
   }
+
 
 }
